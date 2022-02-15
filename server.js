@@ -19,4 +19,18 @@ app.get('/magic/:question', (req, res) => {
     `)
 })
 
+// Pass it around
+
+app.get('/', (req, res) => {
+    res.send(`99 bottles of milk on the wall, 99 bottles of beer, <a href='/98'> take one down, pass it around</a>`)
+})
+
+app.get('/:number', (req, res) => {
+    if(req.params.number != 0){
+        res.send(`${req.params.number} bottles of milk on the wall, ${req.params.number--} bottles of milk, <a href='/${req.params.number}'> take one down, pass it around<a>`)
+    } else {
+        res.send(`None of the bottles of milk on the wall, none of the bottles of milk, <a href='/'>they\'re all gone now, put \'em back up</a>`)
+    }
+})
+
 app.listen(3000)
